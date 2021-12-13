@@ -1,0 +1,133 @@
+ <center>
+            <h1>Liste des livres</h1>
+            <br/>
+            <table class="table ">
+                <tr>
+                    <th>id</th>
+                    <th>titre</th>
+                    <th>Prix</th>
+                </tr>  
+                
+                <?php
+                try{
+                    $pdo=new PDO("mysql:host=localhost;dbname=gestionlivre",'root','');
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                    
+                    $pdostat=$pdo->query("SELECT * FROM livre");
+                    foreach($pdostat as $ligne)
+                    {
+                        echo"<tr>"; 
+                        echo"<td>".$ligne['id']."</td>";
+                        echo"<td>".$ligne['titre']."</td>";
+                        echo"<td>".$ligne['prix']."</td>";
+                        // echo "<a class=\"btn btn-danger btn-sm\" 
+                        // href=supp_produit.php?id={$ligne['id']}>supprimer</a>";
+
+                        // echo " <a class=\"btn btn-primary btn-sm\" 
+                        // href=modif_produit.php?id={$ligne['id']}>modifier</a>";
+                      echo"</tr>";
+                      
+                    }
+                }
+                catch(Exception $e)
+                {
+                    echo"ERREUR : ".$e->getMessage();
+                }
+                ?>
+      </table >
+            </center>
+
+
+
+
+
+
+
+
+ echo "<td><img src=<?php echo htmlspecialchars($r['image']); ?> height='183' width='275'></td>";
+
+
+
+// echo "<a class=\"btn btn-danger btn-sm\" 
+                        // href=supp_produit.php?id={$ligne['id']}>supprimer</a>";
+
+                        // echo " <a class=\"btn btn-primary btn-sm\" 
+                        // href=modif_produit.php?id={$ligne['id']}>modifier</a>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+$id=$_GET['id'];
+try {
+    $pdo=new PDO("mysql:host=localhost;dbname=gestionlivre",'root','') ;
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $pdostat = $pdo->query("select * from livre where id=$id") ;
+    $ligne=$pdostat->fetch(PDO::FETCH_ASSOC) ;
+    $titre=$ligne['titre'];
+    $description=$ligne['description'];
+    $prix=$ligne['prix'];
+    //$image=$ligne['image'];
+}
+catch (Exception $e){
+    echo"Erreur".$e->getMessage();
+} ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modification Livre</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <center>
+        <form action= "Enregistrer_Livre.php" method="get">
+            <h1 style="text-align:center;">Modifier Livre</h1>
+        <table border="3" cellpadding="10">
+        <tr >
+                <th>Id </th>
+                <td><input type="number" name="id" value= <?php echo $id ?>/></td>
+            </tr>
+
+            <tr>
+                <th>Titre</th>
+                <td><input type="text" name="titre"  value=<?php echo $titre?> /></td>
+            </tr>
+
+            <tr>
+                <th>Description</th>
+                <td><textarea type="text" name="description"  width="20" height="20" value=<?php echo $description?> ></textarea></td>
+            </tr>
+
+            <tr>
+                <th>Prix</th>
+                <td><input type="number" name="prix"   value="<?php echo $prix ?>"/></td>
+            </tr>
+
+            <!-- <tr>
+                <th>image</th>
+                <td><input type="text" name="image"   value="<?php echo $image ?>"/></td>
+            </tr> -->
+        </table>
+        <br>
+        <input type="submit" value="Enregistrer" class="btn btn-success" />
+        <button class="btn btn-danger"><a href="Annuler.php">Annuler</a></button>
+        
+    </form>
+</center>
+    </body>
+</html>

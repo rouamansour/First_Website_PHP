@@ -1,0 +1,100 @@
+<?php
+    $id=$_GET['id'];
+    $titre=$_GET['titre'];
+    $description=$_GET['description'];
+    $prix=$_GET['prix'];
+    $image=$_GET['image'];
+
+    try{
+        $pdo=new PDO("mysql:host=localhost;dbname=gestionlivre",'root','');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $req=" select * from livre where $id='id'";
+        $pdo->query($req);
+       // header('Location:ListLivre.php'); 
+        }
+        catch(Exception $e)
+        {
+            echo"ERREUR : ".$e->getMessage();
+        }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>detail</title>
+</head>
+<body>
+<div class="container"  action="">
+        <br class="row">
+          <div class="col-md-6">
+            <img src="images/image3.jpg" class="img-thumbnail" style="max-width: 93%; max-height: 93%;" >
+          </div>
+          <br class="col-md-6">
+              <h1>Des pensées sans conter</h1>
+             <img src="images/ratingc.png" style="max-width: 8%; max-height: 8%;"/>
+              (21 avis client)
+              <div>
+                Un regard très décalé sur la vie et ses vicissitudes, de la naissance à la mort, 
+                en passant par l’amour, la musique, le travail ou la nature… 
+                tout au long de cet ouvrage atypique, composé de chapitres, 
+                certes, mais aussi d’entr’actes qui sont comme des fenêtres 
+                ouvertes par lesquelles le lecteur est invité à l’évasion, 
+                au rêve, à la poésie et aux délires de la pensée et des mots.
+                Un flot de pensées déposées dans un livre 
+                qui bouscule les codes (choisissez donc la position 
+                plein phares pour lire ces pensées éclairées) avec l’envie d’en rire.
+                C’est là le fil conducteur de cet ouvrage : rions donc ensemble !
+                De la poésie, des histoires, des émotions, des dialogues,
+                possiblement délirants, des coups de gueule aussi… 
+                Il s’agit d’un livre ludique, pour jouer avec les
+                mots et les idées. Jouer avec les pensées, toutes les
+                pensées… des pensées sans compter, sans dépenser
+                et sans conter trop d’histoires, sans « vous en raconter »…
+                bref, des pensées sans conter.
+              </div>
+              <div >
+                <p><strong style=" margin-right:15px;">Version :</strong>
+                  <select name="op" id="version" >
+                    <option value="choisir_une_option" selected>choisir une option </option>
+                    <option value="5">Ebook Télechargable </option>
+                    <option value="60">livre Papier </option>
+                  </select>
+              </div>
+              <p id="prix"></p>
+              <div>
+                <strong style=" margin-right:15px;">Quantité:</strong>
+                <input type="number" style=" font-size:10px; width:40px; height:30px;"/>
+                <input type="submit"  id="btn"value ="Ajouter au panier" class="btn btn-danger" />
+                <br><br>
+                UGS : ND Catégories : Humour, Nouveautés, Présentés en vidéo Brand: Fabrice Dorey
+              </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer-bot">
+        <div class="container">
+                <div class="social-links">
+                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                    <a href=""><i class="fab fa-twitter"></i></a>
+                    <a href=""><i class="fab fa-linkedin"></i></a>
+                    <a href=""><i class="fab fa-whatsapp"></i></a>
+                  </div>
+                  <p><a href="">Contact</a></p>
+                  <br>
+                 
+          <center>
+            Copyright © Lifestyle Store. All Rights Reserved 
+          </center>
+        </div>
+      </footer>
+</body>
+</html>
