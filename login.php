@@ -10,7 +10,7 @@ $pdostat->execute(array($_POST['username'],$_POST['password'])) ;
 if ($utilisateur = $pdostat->fetch()){
 	 //echo "Bienvenue {$utilisateur['username']}\n" ;
 	 $_SESSION["username"]=$_POST['username'];
-	 header("location:accueil.php");
+	 header("location:index1.php");
  }
 else { $message="vérifier login et password" ; }
 }

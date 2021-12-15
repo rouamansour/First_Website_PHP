@@ -8,7 +8,7 @@ try{
     $titre=$ligne['titre'];
     $description=$ligne['description'];
     $prix=$ligne['prix'];
-    //$image=$image['image'];
+    $image=$ligne['image'];
 }
 catch(Exception $e)
 {
@@ -49,6 +49,10 @@ catch(Exception $e)
 <tr>
 <th>Prix</th>
 <td><input type="number" name="prix" value=<?php echo $prix?> /></td>
+</tr>
+<tr>
+<th>Image</th>
+<td><input type="text" name="image" value=<?php echo $image?> /></td>
 </tr>
 </table>
 <br/>
