@@ -4,13 +4,13 @@ $message="";
 if (isset($_POST['username'])){
 	try{
 		$pdo=new PDO("mysql:host=localhost;dbname=gestionlivre",'root','') ;
-$req ="SELECT * FROM users WHERE username=? AND password=?";
+$req ="SELECT * FROM visiteur WHERE username=? AND password=?";
 $pdostat = $pdo->prepare($req) ;
 $pdostat->execute(array($_POST['username'],$_POST['password'])) ; 
 if ($utilisateur = $pdostat->fetch()){
 	 //echo "Bienvenue {$utilisateur['username']}\n" ;
 	 $_SESSION["username"]=$_POST['username'];
-	 header("location:ListLivre.php");
+	 header("location:index1.php");
  }
 else { $message="vérifier login et password" ; }
 }
@@ -22,7 +22,7 @@ catch (Exception $e) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login </title>
+	<title>Login Visiteur</title>
 	<link rel="stylesheet" href="style.css" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -37,7 +37,7 @@ catch (Exception $e) {
 			<div class="col-xs-6 col-xs-offset-3">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h4>LOGIN</h4>
+						<h4>LOGIN VISITEUR</h4>
 					</div>
 					<div class="panel-body">
 						<form action= "" method="Post" class="">
@@ -54,11 +54,6 @@ catch (Exception $e) {
                             <center>
 							<input type="submit" class="btn btn-primary" value="submit " name="submit"/>
                             </center>
-
-							<!-- <input type="submit" value="Connexion " name="submit" class="box-button"> -->
-							<!--<p class="box-register">Vous êtes nouveau ici? 
-							<a href="inscription.php">S'inscrire</a>
-							</p>-->
 						</form>
 					</div>
 				</div>
